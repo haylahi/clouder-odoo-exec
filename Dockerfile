@@ -37,7 +37,7 @@ RUN dpkg -i /opt/sources/wkhtmltox.deb
 
 ADD sources/bin /app/bin/
 # create the odoo user
-RUN adduser --home=/opt/odoo --disabled-password --gecos "" --shell=/bin/bash odoo
+RUN adduser --disabled-password --gecos "" --shell=/bin/bash odoo
 RUN mkdir -p /opt/odoo/data
 RUN mkdir -p /opt/odoo/etc
 RUN mkdir -p /opt/odoo/extra-addons
