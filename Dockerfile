@@ -18,13 +18,16 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list && apt-get update && apt-get -yq install adduser ghostscript postgresql-client-9.4 python python-pip libjpeg-dev libfreetype6-dev zlib1g-dev libpng12-dev python-imaging python-pychart python-libxslt1 xfonts-base xfonts-75dpi libxrender1 libxext6 fontconfig python-zsi python-lasso libzmq5 libxslt1-dev libxml2-dev libxml2 libxslt1.1 python-dev libpq-dev libffi-dev libldap2-dev libssl-dev libsasl2-dev openssh-client node-less
 
 RUN pip install --upgrade setuptools
-RUN pip install --upgrade pip simplejson
-ADD sources/requirements.txt /opt/sources/requirements.txt
+RUN pip install --upgrade pip
+ADD sources/requirements8.txt /opt/sources/requirements8.txt
+ADD sources/requirements9.txt /opt/sources/requirements9.txt
+
 # use wheels from our public wheelhouse for proper versions of listed packages
 # as described in sourced pip-req.txt
 # these are python dependencies for odoo and "apps" as precompiled wheel packages
 
-RUN pip install --upgrade --force-reinstall -r /opt/sources/requirements.txt
+RUN pip install --upgrade --force-reinstall -r /opt/sources/requirements8.txt
+RUN pip install --upgrade --force-reinstall -r /opt/sources/requirements9.txt
 
 RUN pip install paramiko erppeek
 
